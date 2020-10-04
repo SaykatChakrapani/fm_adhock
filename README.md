@@ -1,7 +1,6 @@
-# FM Transmitter
-Use the Raspberry Pi as an FM transmitter. Works on every Raspberry Pi board.
+# fm_adhoc transmitter
 
-Just get an FM receiver, connect a 20 - 40 cm plain wire to the Raspberry Pi's GPIO4 (PIN 7 on GPIO header) to act as an antenna, and you are ready for broadcasting.
+Raspberry Pi's GPIO4 (PIN 7 on GPIO header) to act as an antenna, and you are ready for broadcasting.
 
 This project uses the general clock output to produce frequency modulated radio communication. It is based on an idea originally presented by [Oliver Mattos and Oskar Weigl](http://icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter) at [PiFM project](http://icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter).
 ## How to use it
@@ -17,7 +16,7 @@ sudo ./fm_transmitter -f 102.0 acoustic_guitar_duet.wav
 ```
 Where:
 * -f frequency - Specifies the frequency in MHz, 100.0 by default if not passed
-* acoustic_guitar_duet.wav - Sample WAV file, you can use your own
+* guitar_testfile.wav - Sample WAV file, you can use your own
 
 Other options:
 * -d dma_channel - Specifies the DMA channel to be used (0 by default), type 255 to disable DMA transfer, CPU will be used instead
@@ -40,7 +39,7 @@ echo "performance"| sudo tee /sys/devices/system/cpu/cpu0/cpufreq/scaling_govern
 You can transmitt uncompressed WAV (.wav) files directly or read audio data from stdin, eg.:
 ```
 sudo apt-get install sox
-sox acoustic_guitar_duet.wav -r 22050 -c 1 -b 16 -t wav - | sudo ./fm_transmitter -f 100.6 -
+sox guitar_testfile.wav -r 22050 -c 1 -b 16 -t wav - | sudo ./fm_transmitter -f 100.6 -
 ```
 Please note only uncompressed WAV files are supported. If you receive the "corrupted data" error try converting the file, eg. by using SoX:
 ```
@@ -57,13 +56,3 @@ In cases of a performance drop down use ```plughw:1,0``` instead of ```hw:1,0```
 ```
 arecord -D plughw:1,0 -c1 -d 0 -r 22050 -f S16_LE | sudo ./fm_transmitter -f 100.6 -
 ```
-## Legal note
-Please keep in mind that transmitting on certain frequencies without special permissions may be illegal in your country.
-## New features
-* DMA peripheral support
-* Allows custom frequency and bandwidth settings
-* Works on every Raspberry Pi model
-* Reads mono and stereo files
-* Reads data from stdin
-
-Included sample audio was created by [graham_makes](https://freesound.org/people/graham_makes/sounds/449409/) and published on [freesound.org](https://freesound.org/)

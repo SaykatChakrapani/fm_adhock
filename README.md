@@ -23,7 +23,7 @@ Other options:
 * -r - Loops the playback
 
 After transmission has begun, simply tune an FM receiver to chosen frequency, You should hear the playback.
-### Raspberry Pi Setup Problem
+### New Raspberry Pi 4 Setup Problem
 On Raspberry Pi 4, other built-in hardware probably interfers somehow with this software making transmitting not possible on all standard FM broadcasting frequencies. In this case it is recommended to:
 1. Compile executable with option to use GPIO21 instead of GPIO4 (PIN 40 on GPIO header):
 ```

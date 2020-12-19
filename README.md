@@ -6,7 +6,7 @@ It is based on an idea originally presented by [Oliver Mattos and Oskar Weigl] a
 ## Setup
 ```
 git clone https://github.com/SaykatChakrapani/fm_adhock
-cd fm_transmitter
+cd fm_adhock
 make
 ``` 
 After a successful build you can start transmitting by executing the "fm_transmitter" program:
